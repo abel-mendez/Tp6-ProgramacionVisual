@@ -1,14 +1,25 @@
 package ar.edu.unju.fi.tp6.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+
+@Entity
+@Table(name="COMPRAS")
 @Component ("unaCompra")
 public class Compra {
+	@Column(name="comp_id")
 	private int id;
+	@Column(name="comp_producto")
 	@Autowired
 	private Producto producto;
+	@Column(name="comp_cantidad")
 	private int cantidad;
+	@Column(name="comp_total")
 	private Double total;
 
 public Compra() {
