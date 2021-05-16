@@ -1,13 +1,26 @@
 package ar.edu.unju.fi.tp6.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.springframework.stereotype.Component;
 
+@Entity
+@Table(name="productos")
 @Component("unProducto")
 public class Producto {
+	@Id
+	@Column(name="pro_codigo")
 	 private int codigo;
+	@Column(name="pro_nombre")
 	 private String nombre;
+	@Column(name="pro_precio")
 	 private Double precio;
+	@Column(name="pro_marca")
 	 private String marca;
+	@Column(name="pro_stock")
 	 private int stock;
 	 
 	public Producto() {
