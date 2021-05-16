@@ -8,19 +8,19 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name="productos")
+@Table(name="PRODUCTOS")
 @Component("unProducto")
 public class Producto {
 	@Id
-	@Column(name="pro_codigo")
+	@Column(name="PRO_CODIGO")
 	 private int codigo;
-	@Column(name="pro_nombre")
+	@Column(name="PRO_NOMBRE")
 	 private String nombre;
-	@Column(name="pro_precio")
+	@Column(name="PRO_PRECIO")
 	 private Double precio;
-	@Column(name="pro_marca")
+	@Column(name="PRO_MARCA")
 	 private String marca;
-	@Column(name="pro_stock")
+	@Column(name="PRO_STOCK")
 	 private int stock;
 	 
 	public Producto() {
