@@ -21,7 +21,7 @@ public class Compra {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="COMP_ID")
-	private long id;
+	private Long id;
 	
 	@Autowired
 	@ManyToOne(fetch= FetchType.LAZY)
@@ -48,6 +48,23 @@ public Compra(Producto producto, int cantidad) {
 	super();
 	this.producto = producto;
 	this.cantidad = cantidad;
+}
+
+
+
+/**
+ * @return the id
+ */
+public Long getId() {
+	return id;
+}
+
+
+/**
+ * @param id the id to set
+ */
+public void setId(Long id) {
+	this.id = id;
 }
 
 
