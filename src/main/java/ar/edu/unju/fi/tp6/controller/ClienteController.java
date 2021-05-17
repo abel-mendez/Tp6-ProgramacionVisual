@@ -54,7 +54,7 @@ public class ClienteController {
 		LOGGER.info("METHOD : getClientesPage()");
 		ModelAndView modelView = new ModelAndView("clientes");
 		if (clienteService.getAllClientes() == null) {
-		//	clienteService.generarTablaCLiente();
+			clienteService.generarTablaCLiente();
 		}
 		modelView.addObject("clientes",clienteService.getAllClientes());
 		LOGGER.info("RESULT : VISUALIZA LA PAGINA clientes.html");

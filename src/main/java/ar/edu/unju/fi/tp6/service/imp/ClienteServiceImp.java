@@ -17,33 +17,34 @@ import ar.edu.unju.fi.tp6.util.TablaCliente;
 @Service("clienteRamImp")
 public class ClienteServiceImp implements IClienteService{
 
-	private List<Cliente> clientes;
+	
 	@Autowired
 	@Qualifier("clienteObj")
 	Cliente cliente;
 	@Autowired
 	IClienteDB clienteDBImp;
-
+	private List<Cliente> clientes;
 	private static final Log LOGGER = LogFactory.getLog(ClienteServiceImp.class);
 	
-//	@Override
-//	public void generarTablaCLiente() {
-//		LOGGER.info("CONTROLLER : ClienteServiceImp");
-//		LOGGER.info("METHOD : generarTablaCLiente()");
-//		
-//		//clientes = TablaCliente.listclientes;
-//		//clientes.add(new Cliente("DNI",38325788,"CRUZ,LEANDRO","leoapu@gmail.com","sdd12554",LocalDate.of(1989, 4, 3),388,5445845,LocalDate.of(2021, 4, 16)));
-//		clienteDBImp.save(new Cliente("DNI",38325788,"CRUZ,LEANDRO","leoapu@gmail.com","sdd12554",LocalDate.of(1989, 4, 3),388,5445845,LocalDate.of(2021, 4, 16)));
-//		LOGGER.info("RESULT : CREA LISTA DE CLIENTES");
-//	}
+	@Override
+	public void generarTablaCLiente() {
+		LOGGER.info("CONTROLLER : ClienteServiceImp");
+		LOGGER.info("METHOD : generarTablaCLiente()");
+		
+		this.clientes = clienteDBImp.findAll();
+		//clientes.add(new Cliente("DNI",38325788,"CRUZ,LEANDRO","leoapu@gmail.com","sdd12554",LocalDate.of(1989, 4, 3),388,5445845,LocalDate.of(2021, 4, 16)));
+		clienteDBImp.save(new Cliente("DNI",38325788,"CRUZ,LEANDRO","leoapu@gmail.com","sdd12554",LocalDate.of(1989, 4, 3),388,5445845,LocalDate.of(2021, 4, 16)));
+		LOGGER.info("RESULT : CREA LISTA DE CLIENTES");
+	}
 	
 
 	@Override
 	public void guardarCliente(Cliente cliente) {
 		LOGGER.info("CONTROLLER : ClienteServiceImp");
-//		  if (clientes == null) {
-//			  generarTablaCLiente();
-//		  }
+		this.clientes = clienteDBImp.findAll();
+		  if (clientes == null) {
+			  generarTablaCLiente();
+		  }
 		  
 		   //clientes.add(cliente);
 		  clienteDBImp.save(cliente);
