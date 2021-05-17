@@ -6,7 +6,7 @@ import ar.edu.unju.fi.tp6.model.Producto;
 
 public interface IProductoService {
 	//14-5 VDE
-	public void generarTablaProducto();
+	/*public void generarTablaProducto();*/
 
 	public void addProducto(Producto producto);
 	
