@@ -46,7 +46,6 @@ public class ClienteServiceImp implements IClienteService{
 			  generarTablaCLiente();
 		  }
 		  
-		   //clientes.add(cliente);
 		  clienteDBImp.save(cliente);
 		  // LOGGER.info("METHOD : guardarCliente() - se agrego un Cliente en la lista --> " + clientes.get(clientes.size()-1));
 		   LOGGER.info("RESULT : GUARDA CLIENTE INGRESADO POR FORMULARIO");
