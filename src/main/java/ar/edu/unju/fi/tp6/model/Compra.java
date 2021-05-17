@@ -1,14 +1,36 @@
 package ar.edu.unju.fi.tp6.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+@Entity
+@Table(name="COMPRAS")
 @Component ("unaCompra")
 public class Compra {
-	private int id;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="COMP_ID")
+	private Long id;
+	
 	@Autowired
+	@ManyToOne(fetch= FetchType.LAZY)
+	@JoinColumn(name="PRO_CODIGO")
 	private Producto producto;
+	
+	@Column(name="COMP_CANTIDAD")
 	private int cantidad;
+	@Column(name="COMP_TOTAL")
 	private Double total;
 
 public Compra() {
@@ -22,9 +44,8 @@ public Compra() {
  * @param cantidad
  * @param total
  */
-public Compra(int id, Producto producto, int cantidad) {
+public Compra(Producto producto, int cantidad) {
 	super();
-	this.id = id;
 	this.producto = producto;
 	this.cantidad = cantidad;
 }
@@ -34,7 +55,7 @@ public Compra(int id, Producto producto, int cantidad) {
 /**
  * @return the id
  */
-public int getId() {
+public Long getId() {
 	return id;
 }
 
@@ -42,7 +63,7 @@ public int getId() {
 /**
  * @param id the id to set
  */
-public void setId(int id) {
+public void setId(Long id) {
 	this.id = id;
 }
 
