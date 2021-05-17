@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.tp6.model.Cliente;
+import ar.edu.unju.fi.tp6.repository.IClienteDB;
 import ar.edu.unju.fi.tp6.service.IClienteService;
 import ar.edu.unju.fi.tp6.util.TablaCliente;
 
@@ -20,30 +21,33 @@ public class ClienteServiceImp implements IClienteService{
 	@Autowired
 	@Qualifier("clienteObj")
 	Cliente cliente;
+	@Autowired
+	IClienteDB clienteDBImp;
 
 	private static final Log LOGGER = LogFactory.getLog(ClienteServiceImp.class);
 	
-	@Override
-	public void generarTablaCLiente() {
-		LOGGER.info("CONTROLLER : ClienteServiceImp");
-		LOGGER.info("METHOD : generarTablaCLiente()");
-		
-		clientes = TablaCliente.listclientes;
-		clientes.add(new Cliente("DNI",38325788,"CRUZ,LEANDRO","leoapu@gmail.com","sdd12554",LocalDate.of(1989, 4, 3),388,5445845,LocalDate.of(2021, 4, 16)));
-	
-		LOGGER.info("RESULT : CREA LISTA DE CLIENTES");
-	}
+//	@Override
+//	public void generarTablaCLiente() {
+//		LOGGER.info("CONTROLLER : ClienteServiceImp");
+//		LOGGER.info("METHOD : generarTablaCLiente()");
+//		
+//		//clientes = TablaCliente.listclientes;
+//		//clientes.add(new Cliente("DNI",38325788,"CRUZ,LEANDRO","leoapu@gmail.com","sdd12554",LocalDate.of(1989, 4, 3),388,5445845,LocalDate.of(2021, 4, 16)));
+//		clienteDBImp.save(new Cliente("DNI",38325788,"CRUZ,LEANDRO","leoapu@gmail.com","sdd12554",LocalDate.of(1989, 4, 3),388,5445845,LocalDate.of(2021, 4, 16)));
+//		LOGGER.info("RESULT : CREA LISTA DE CLIENTES");
+//	}
 	
 
 	@Override
 	public void guardarCliente(Cliente cliente) {
 		LOGGER.info("CONTROLLER : ClienteServiceImp");
-		  if (clientes == null) {
-			  generarTablaCLiente();
-		  }
+//		  if (clientes == null) {
+//			  generarTablaCLiente();
+//		  }
 		  
-		   clientes.add(cliente);
-		   LOGGER.info("METHOD : guardarCliente() - se agrego un Cliente en la lista --> " + clientes.get(clientes.size()-1));
+		   //clientes.add(cliente);
+		  clienteDBImp.save(cliente);
+		  // LOGGER.info("METHOD : guardarCliente() - se agrego un Cliente en la lista --> " + clientes.get(clientes.size()-1));
 		   LOGGER.info("RESULT : GUARDA CLIENTE INGRESADO POR FORMULARIO");
 	}
 
@@ -52,14 +56,15 @@ public class ClienteServiceImp implements IClienteService{
 	public List<Cliente> getAllClientes() {
 		LOGGER.info("METHOD : getAllClientes()");
 		LOGGER.info("RESULT : INGRESA CLIENTES A UNA LISTA DE CLIENTES");
-		return clientes;
+		this.clientes=clienteDBImp.findAll();
+		return this.clientes;
 	}
 
 
 	@Override
 	public Cliente getCliente() {
 		// TODO Auto-generated method stub
-		return cliente;
+		return this.cliente;
 	}
 
 
