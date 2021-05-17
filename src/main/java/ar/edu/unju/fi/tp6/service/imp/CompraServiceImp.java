@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.tp6.model.Compra;
 import ar.edu.unju.fi.tp6.model.Producto;
+import ar.edu.unju.fi.tp6.repository.ICompraDB;
 import ar.edu.unju.fi.tp6.service.ICompraService;
 import ar.edu.unju.fi.tp6.util.TablaCompra;
 @Service
@@ -19,31 +20,34 @@ public class CompraServiceImp implements ICompraService {
 	@Autowired
 	@Qualifier("unaCompra")
 	Compra compra;
+	@Autowired
+	ICompraDB compraDBImp;
 	@Override
 	public void guardarCompra(Compra compra) {
 		// TODO Auto-generated method stub
-		if(compras==null) {
-			generarTablaCompra();
-		}
-		this.compras.add(compra);
-		LOGGER.info("METHOD: se agrego un obj compra a la lista -> "+compras.get(compras.size()-1));
-		
+		//if(compras==null) {
+			//generarTablaCompra();
+		//}
+		//this.compras.add(compra);
+		//LOGGER.info("METHOD: se agrego un obj compra a la lista -> "+compras.get(compras.size()-1));
+		compraDBImp.save(compra);
 	}
 
 	@Override
 	public List<Compra> obtenerCompras() {
 		// TODO Auto-generated method stub
 		LOGGER.info("METHOD: mostrar obj de la lista ");
+		this.compras=compraDBImp.findAll();
 		return this.compras;
 	}
 
-	@Override
-	public void generarTablaCompra() {
+	//@Override
+	//public void generarTablaCompra() {
 		// TODO Auto-generated method stub
-		this.compras=TablaCompra.listCompras;
-		this.compras.add(new Compra(1, new Producto(0, "Galleta", 25.6, "pepitos", 2), 3));
-		LOGGER.info("RESULT : CREA LISTA DE CLIENTES");
-	}
+	//	this.compras=TablaCompra.listCompras;
+	//	this.compras.add(new Compra(1, new Producto(0, "Galleta", 25.6, "pepitos", 2), 3));
+	//	LOGGER.info("RESULT : CREA LISTA DE CLIENTES");
+	//}
 
 	@Override
 	public Compra getCompra() {

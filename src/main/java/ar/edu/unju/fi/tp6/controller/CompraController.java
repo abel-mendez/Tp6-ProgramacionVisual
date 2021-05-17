@@ -29,7 +29,7 @@ public class CompraController {
 			@RequestParam(name="codigo")String codigo) {
 		Compra comp = new Compra();
 		comp.setCantidad(Integer.valueOf(cantidad));
-		comp.setId(Integer.valueOf(id));
+		comp.setId(Long.valueOf(id));
 		comp.setProducto(this.productoService.getUnProducto(Integer.valueOf(codigo)));
 		comp.setTotal(comp.getTotal());
 		LOGGER.info("CONTROLLER : CompraController with /guardarCompra post method");
@@ -55,7 +55,7 @@ public class CompraController {
 		LOGGER.info("METHOD : getComprasListPage()");
 		ModelAndView modelView = new ModelAndView("listacompras");
 		if (compraService.obtenerCompras().isEmpty()) {
-			compraService.generarTablaCompra();
+			//compraService.generarTablaCompra();
 		}
 		modelView.addObject("compras",compraService.obtenerCompras());
 		LOGGER.info("RESULT : VISUALIZA LA PAGINA listacompras.html");
