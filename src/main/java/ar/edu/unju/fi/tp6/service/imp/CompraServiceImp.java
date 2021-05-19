@@ -13,6 +13,7 @@ import ar.edu.unju.fi.tp6.model.Producto;
 import ar.edu.unju.fi.tp6.repository.ICompraDB;
 import ar.edu.unju.fi.tp6.service.ICompraService;
 import ar.edu.unju.fi.tp6.util.TablaCompra;
+
 @Service
 public class CompraServiceImp implements ICompraService {
 	private List<Compra> compras=TablaCompra.listCompras;
