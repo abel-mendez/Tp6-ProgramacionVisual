@@ -55,7 +55,7 @@ public class CompraController {
 		LOGGER.info("METHOD : getComprasListPage()");
 		ModelAndView modelView = new ModelAndView("listacompras");
 		if (compraService.obtenerCompras().isEmpty()) {
-			//compraService.generarTablaCompra();
+			compraService.generarTablaCompra();
 		}
 		modelView.addObject("compras",compraService.obtenerCompras());
 		LOGGER.info("RESULT : VISUALIZA LA PAGINA listacompras.html");
